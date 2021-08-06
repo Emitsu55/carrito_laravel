@@ -1,0 +1,27 @@
+.alinear-der {
+    float: right;
+}
+.alinear-izq {
+    float: left;
+}
+
+.txt-center {
+    text-align: center;
+}
+
+.contenido-centrado {
+    max-width: 80rem;
+    margin: 0 auto;
+}
+
+.mostrar-desk {
+    display: none;
+
+    @include tablet {
+        display: inline-block;
+    }
+}
+
+.display-none {
+    display: none !important;
+}

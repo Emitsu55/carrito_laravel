@@ -1,0 +1,33 @@
+.lista-prod {
+    width: 95%;
+    margin: 5rem auto;
+    @include grid(4, 1fr);
+    grid-gap: 2rem;
+
+    .producto {
+        background-color: $blanco;
+        padding: 2rem;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        border: 1px solid $color1;
+        
+        img {
+            width: 10rem;
+            margin: 0 auto;
+        }
+        .precio{
+            color: green;
+            border-radius: 2rem;
+            padding: 0;
+            font-weight: $bold;
+        }
+        .desc {
+            padding: 1rem;
+            border-radius: 2rem;
+            font-size: 1rem;
+            background-color: $blanco;
+        }
+    }
+}

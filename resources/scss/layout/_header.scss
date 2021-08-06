@@ -1,0 +1,30 @@
+header {
+    background-color: $color1;
+    color: $blanco;
+    display: flex;
+    justify-content: space-between;
+    h1 {
+        padding: 0 2rem;
+    }
+}
+.mobile-menu {
+    display: none;
+}
+
+.nav-menu {
+    width: 90%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    a{
+        margin: 0 2rem;
+        padding: 1rem;
+        font-size: 2rem;
+    }
+
+    .user-panel {
+        margin-left: 2rem;
+        
+    }
+}

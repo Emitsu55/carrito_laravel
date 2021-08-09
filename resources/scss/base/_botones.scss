@@ -10,7 +10,7 @@
     }
 }
 
-.btn-active {
+.btn-a {
     background-color: $color3;
     color: $blanco;
     border: 1px solid $color3;
@@ -19,37 +19,23 @@
         color: $color3;
     }
 }
-.btn-inactive {
+
+.success {
+    padding: 1rem 2rem;
+    display: block;
+    border-radius: 7px;
     background-color: $color3;
+    a, span {
+        margin: 0;
+    }
+}
+
+.alert {
+    padding: 0 .5rem;
+    border-radius: 7px;
     color: $blanco;
-    border: 1px solid $color3;
-    &:hover {
-        background-color: $blanco;
-        color: $color2;
-        border: 1px solid $color2;
-    }
+    background-color: red;
 }
 
 
-/*
-.btn-oscuro {
-    color: #12335f8f;
-    &:hover {
-        color: $color1;
-    }
-}
 
-.btn-pagina {
-    background-color: $blanco;
-    color: $color3;
-    
-    @include tablet {
-        border: 1px solid $color3;
-        border-radius: 20rem;
-        &:hover {
-            background-color: $color3;
-            color: $blanco;
-        }
-    }
-}
-*/ 

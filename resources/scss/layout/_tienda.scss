@@ -1,17 +1,32 @@
+
+main {
+    margin: 5rem 2rem;
+    h2 {
+        text-align: left;
+        font-size: 2.5rem;
+    }
+    hr {
+        border-top: $color1 1px solid;
+        width: 95%;
+    }
+}
+
 .lista-prod {
-    width: 95%;
     margin: 5rem auto;
+    width: 80%;
     @include grid(4, 1fr);
-    grid-gap: 2rem;
+    grid-gap: 4rem;
 
     .producto {
+        position: relative;
         background-color: $blanco;
         padding: 2rem;
         text-align: center;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        border: 1px solid $color1;
+        border: 1px solid rgb(167, 167, 167);
+        h3 {
+            font-size: 2.5rem;
+            margin: 0;
+        }
         
         img {
             width: 10rem;
@@ -28,6 +43,23 @@
             border-radius: 2rem;
             font-size: 1rem;
             background-color: $blanco;
+        }
+        .popup {
+            padding: 2rem;
+            width: 25rem;
+            position: absolute;
+            top: 90px;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            text-align: center;
+            background-color: $color1;
+            color: $blanco;
+        }
+        .img-prod {
+            &:hover {
+                cursor: pointer;
+            }
         }
     }
 }

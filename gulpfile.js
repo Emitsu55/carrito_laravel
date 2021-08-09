@@ -10,7 +10,8 @@ const cache = require('gulp-cache');
 
 const paths = {
     scss: 'resources/scss/**/*.scss',
-    css: 'public/assets/css'
+    css: 'public/assets/css',
+    js: 'resources/js/mios/*.js'
 }
 
 function css() {
@@ -23,8 +24,15 @@ function css() {
         .pipe( dest(paths.css) );
 }
 
-function watchFiles() {
-    watch( paths.scss, css );
+function javascript() {
+    return src(paths.js)
+        .pipe(concat('app.js'))
+        .pipe(dest('public/assets/js'))
 }
 
-exports.default = parallel(css, watchFiles);
+function watchFiles() {
+    watch(paths.scss, css);
+    watch(paths.js, javascript);
+}
+
+exports.default = parallel(css, javascript, watchFiles);

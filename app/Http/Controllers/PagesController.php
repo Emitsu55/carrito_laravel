@@ -20,5 +20,10 @@ class PagesController extends Controller
         $cartCollection = \Cart::getContent();
         return view('cart')->with(['cartCollection' => $cartCollection]);
     }
+    public function checkout()
+    {
+        $cartCollection = \Cart::getContent();
+        return view('checkout')->with(['cartCollection' => $cartCollection]);
+    }
   
 }

@@ -23,8 +23,9 @@ class CartController extends Controller
    
     }
 
-    public function cart(){
-        return view('checkout');
+    public function checkout(){
+        $cartCollection = \Cart::getContent();
+        return view('checkout')->with(['cartCollection' => $cartCollection]);
     }
 
     public function removeitem(Request $request) {
@@ -37,6 +38,6 @@ class CartController extends Controller
 
     public function clear(){
         \Cart::clear();
-        return back()->with('success',"The shopping cart has successfully beed added to the shopping cart!");
+        return back()->with('success',"¡Producto añadido exitosamente!");
     }
 }

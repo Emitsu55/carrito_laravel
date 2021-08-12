@@ -4,10 +4,11 @@
 }
 
 table {
-    table-layout: fixed;
+  margin: 2rem auto;
+  table-layout: fixed;
   width: 100%;
   border-collapse: collapse;
-  border: 3px solid $color3;
+  border: 2px solid $color3;
 
   thead th:nth-child(1) {
     width: 10%;
@@ -31,8 +32,6 @@ table {
     border-bottom: 1px solid $color4;
   }
   .total {
-      width: 100%;
-      text-align: right;
       color: green;
   }
 

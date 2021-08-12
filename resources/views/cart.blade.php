@@ -4,7 +4,7 @@
 <main>
     <div class="carrito">
            @if (count(Cart::getContent()))
-            <table class="table table-striped">
+            <table>
                 <thead>
                     <th>ID:</th>
                     <th>NOMBRE:</th>
@@ -31,17 +31,41 @@
                     @endforeach
                     
                 </tbody>
-                <tfoot>
-                    <th>TOTAL:</th>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                        <td class="total">${{Cart::getTotal();}}</td>
-                </tfoot>
             </table>
 
+            <form class="resumen" action="{{route('cart.checkout')}}" method="POST">
+                @csrf
+                <fieldset>
+                    <legend>Total a Pagar</legend>
+
+                    <table>
+                            <tr>
+                                <td>Subtotal:</td>
+                                <td>${{Cart::getTotal();}}</td>
+                            </tr>
+                            <tr>
+                                <td>Envio:</td>
+                                <td>
+                                    <div class="campo">
+                                        <input type="radio" id="retiro-suc" name="checkout[envio]" value="retiro-suc" checked>
+                                        <label for="retiro-suc">Retiro por sucursal</label>
+                                    </div>
+                                    <div class="campo">
+                                        <input type="radio" id="envio-dom" name="checkout[envio]" value="envio-dom">
+                                        <label for="envio-dom">Envio a domicilio($500)</label>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Total:</td>
+                                <td class="total">${{Cart::getTotal();}}</td>
+                        </table>
+                        <button type="submit" class="btn btn-a d-block">Finalizar Compra</button>
+                </fieldset>
+            </form>
+
             @else
-                <p>Carrito vacio</p>
+                <p class="success">Carrito vacio</p>
            @endif
     </div>
 </main>

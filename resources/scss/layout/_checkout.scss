@@ -1,0 +1,38 @@
+.checkout-form {
+    margin: 2rem auto;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 2rem;
+
+    .required {
+        color: red;
+    }
+
+
+
+    label {
+        font-weight: $bold;
+        font-size: 1.8rem;
+        margin: 1rem 0 0 0;
+    }
+
+    hr {
+        margin-bottom: 2rem;
+        border-top: 1px solid $color3;
+    }
+
+    input[type='text'],
+        [type='number'],
+        [type='tel'],
+        [type='email'],
+        select {
+        display: block;
+        width: 100%;
+        height: 3.5rem;
+        border: none;
+        border-radius: 1rem;
+        margin: 0 0 1rem 0;
+
+    }
+
+}

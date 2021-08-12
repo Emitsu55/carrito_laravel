@@ -3,7 +3,12 @@
 @section('content')
 
 @if (count(Cart::getContent()))
-<a href="{{route('cart.checkout')}}" class="success"> Ver Carrito <span class="alert">{{count(Cart::getContent())}}</span></a>
+<div class="success d-flex">
+    @if(session()->has('success'))
+        <p>{{ session()->get('success') }}</p>
+    @endif
+    <a href="/carrito"> | Ver Carrito <span class="alert">{{count(Cart::getContent())}}</span></a>
+</div>
 @endif
 
 <main>
@@ -18,7 +23,6 @@
             <span class="hidden popup">{{$producto['Descripcion']}}</span>
             <h3>{{$producto['Nombre']}}</h3>
             <p class="precio">${{$producto['Precio']}}</p>
-            {{-- <p class="desc">{{$producto['Descripcion']}}</p> --}}
             <form action="{{route('cart.add')}}" method="post">
                 @csrf
                 <input type="hidden" name="producto_id" value="{{$producto->id}}">

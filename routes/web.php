@@ -13,15 +13,18 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 //Rutas Get
 Route::get('/', 'App\Http\Controllers\PagesController@shop')->name('shop');
 Route::get('/carrito', 'App\Http\Controllers\PagesController@cart')->name('cart');
-// Route::get('/cart-checkout','App\Http\Controllers\PagesController@checkout')->name('checkout');
+Route::get('/cart-checkout','App\Http\Controllers\PagesController@checkout')->name('checkout');
+
 //Rutas post
 Route::post('/cart-add', 'App\Http\Controllers\CartController@add')->name('cart.add');
 Route::post('/cart-clear', 'App\Http\Controllers\CartController@clear')->name('cart.clear');
 Route::post('/cart-removeitem',  'App\Http\Controllers\CartController@removeitem')->name('cart.removeitem');
 Route::post('/cart-checkout','App\Http\Controllers\CartController@checkout')->name('cart.checkout');
+Route::post('/store','App\Http\Controllers\VentasController@store')->name('store');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

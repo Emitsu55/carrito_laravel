@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', function() {
-
     addEvents();
 });
 
@@ -14,10 +13,10 @@ function addEvents() {
         });
     });
 
-    // let modoEnvio = document.querySelectorAll('input[name="checkout[envio]"]');
-    // modoEnvio.forEach(input =>{
-    //     input.addEventListener('click', metodoEnvio);
-    // })
+    let modoEnvio = document.querySelectorAll('input[name="envio"]');
+    modoEnvio.forEach(input =>{
+        input.addEventListener('click', metodoEnvio);
+    })
 }
 
 function popOver(element) {
@@ -26,10 +25,13 @@ function popOver(element) {
 }
 
 function metodoEnvio(e) {
-    let total = document.querySelector('.total');
+    let envio = document.querySelector('#envio_dom');
+    let retiro = document.querySelector('#retiro_suc');
     if(e.target.value === 'envio-dom') {
-        total.innerHTML = "${{Cart::getTotal() + $500;}}";
+        envio.classList.remove('hidden');    
+        retiro.classList.add('hidden');    
     } else {
-        total.innerHTML = "${{Cart::getTotal();}}"; 
+        envio.classList.add('hidden');    
+        retiro.classList.remove('hidden');    
     }
 }

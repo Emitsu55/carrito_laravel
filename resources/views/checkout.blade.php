@@ -6,33 +6,65 @@
     <hr>
 
     <section>
-        <form class="checkout-form" action="">
+        <form class="checkout-form" action="{{route('store')}}" method="POST">
             @csrf
             <fieldset class="datos-fact">
+                {{-- @if ($errors->any())
+                    @foreach ($errors->all() as $error)
+                        <p class="error">{{$error}}</p>
+                    @endforeach
+                @endif --}}
                 <legend>Datos de Facturación</legend>
                 <h2>Datos Personales</h2>
                 <hr>
 
                 <label for="nombre">Nombre<span class="required">*</span>:</label>
-                <input class="input" type="text"
+                <input class="input"
+                value="{{ old('nombre') }}" 
+                type="text"
                 placeholder="Nombre"
                 id="nombre"
-                name="form[nombre]">
+                name="nombre">
+                {!!$errors->first('nombre', '<small class="error">:message</small>')!!}
                 
                 <label for="apellidos">Apellidos<span class="required">*</span>:</label>
-                <input class="input" type="text"
+                <input class="input"
+                value="{{ old('apellidos') }}"
+                type="text"
                 placeholder="Apellidos"
                 id="apellidos"
-                name="form[apellidos]">
+                name="apellidos">
+                {!!$errors->first('apellidos', '<small class="error">:message</small>')!!}
                 
+                <label for="telefono">Teléfono<span class="required">*</span>:</label>
+                <input class="input"
+                value="{{ old('telefono') }}"
+                type="tel"
+                placeholder="Tu Teléfono"
+                id="telefono"
+                name="telefono">
+                {!!$errors->first('telefono', '<small class="error">:message</small>')!!}
+                
+                <label for="email">Email<span class="required">*</span>:</label>
+                <input class="input"
+                value="{{ old('email') }}"
+                type="email"
+                placeholder="Tu Dirección de Email"
+                id="email"
+                name="email">
+                {!!$errors->first('telefono', '<small class="error">:message</small>')!!}
+
                 <h2>Domicilio</h2>
                 <hr>
-
+                
                 <label for="direccion">Direccíon<span class="required">*</span>:</label>
-                <input class="input" type="text"
+                <input class="input"
+                value="{{ old('direccion') }}"
+                type="text"
                 placeholder="Calle y número"
                 id="direccion"
-                name="form[direccion]">
+                name="direccion">
+                {!!$errors->first('apellidos', '<small class="error">:message</small>')!!}
                 
                 <label for="region">Región/Provincia<span class="required">*</span>:</label>
                 <select name="region" id="region">
@@ -61,6 +93,7 @@
                     <option value="Tierra del Fuego">Tierra del Fuego</option>
                     <option value="Tucuman">Tucuman</option>
                 </select>
+                {!!$errors->first('region', '<small class="error">:message</small>')!!}
                 
                 <label for="localidad">Localidad/Ciudad<span class="required">*</span>:</label>
                 <select name="localidad" id="localidad">
@@ -68,25 +101,16 @@
                     <option value="localidad-1">Localidad 1</option>
                     <option value="localidad-2">Localidad 2</option>
                 </select>
-
+                {!!$errors->first('localidad', '<small class="error">:message</small>')!!}
+                
                 <label for="cp">Código Postal<span class="required">*</span>:</label>
-                <input class="input" type="number"
+                <input class="input"
+                value="{{ old('cp') }}"
+                type="number"
                 placeholder="Tu código postal"
                 id="cp"
-                name="form[cp]">
-
-                <label for="telefono">Teléfono<span class="required">*</span>:</label>
-                <input class="input" type="tel"
-                placeholder="Tu Teléfono"
-                id="telefono"
-                name="form[telefono]">
-
-                <label for="email">Email<span class="required">*</span>:</label>
-                <input class="input" type="email"
-                placeholder="Tu Dirección de Email"
-                id="email"
-                name="form[email]">
-                
+                name="cp">
+                {!!$errors->first('cp', '<small class="error">:message</small>')!!}
                 
             </fieldset>
             <fieldset class="pagar">
@@ -103,23 +127,25 @@
                             <td>Envio:</td>
                             <td>
                                 <div class="campo">
-                                    <input type="radio" id="retiro-suc" name="checkout[envio]" value="retiro-suc" checked>
+                                    <input type="radio" id="retiro-suc" name="envio" value="retiro-suc">
                                     <label for="retiro-suc">Retiro por sucursal</label>
                                 </div>
                                 <div class="campo">
-                                    <input type="radio" id="envio-dom" name="checkout[envio]" value="envio-dom">
+                                    <input type="radio" id="envio-dom" name="envio" value="envio-dom" checked>
                                     <label for="envio-dom">Envio a domicilio($500)</label>
                                 </div>
                             </td>
                         </tr>
                         <tr>
                             <td>Total:</td>
-                            <td class="total">${{Cart::getTotal();}}</td>
+                            <td id="retiro_suc" class="total hidden">${{Cart::getTotal();}}</td>
+                            <td id="envio_dom" class="total">${{Cart::getTotal() + 500;}}</td>
                         </tr>
                     </table>
 
-                    <button type="submit" class="btn btn-a d-block">Finalizar Compra</button>
-            </fieldset>
+                    <button type="submit" class="btn btn-a d-block">Pagar</button>
+            
+                </fieldset>
         </form>
     </section>
 </main>

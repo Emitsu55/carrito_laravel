@@ -6,14 +6,10 @@
     <hr>
 
     <section>
-        <form class="checkout-form" action="{{route('store')}}" method="POST">
+        <form class="checkout-form" action="{{route('checkout.payment')}}" method="POST">
             @csrf
             <fieldset class="datos-fact">
-                {{-- @if ($errors->any())
-                    @foreach ($errors->all() as $error)
-                        <p class="error">{{$error}}</p>
-                    @endforeach
-                @endif --}}
+
                 <legend>Datos de Facturación</legend>
                 <h2>Datos Personales</h2>
                 <hr>
@@ -35,6 +31,15 @@
                 id="apellidos"
                 name="apellidos">
                 {!!$errors->first('apellidos', '<small class="error">:message</small>')!!}
+                
+                <label for="dni">DNI<span class="required">*</span>:</label>
+                <input class="input"
+                value="{{ old('dni') }}"
+                type="text"
+                placeholder="Tu DNI"
+                id="dni"
+                name="dni">
+                {!!$errors->first('dni', '<small class="error">:message</small>')!!}
                 
                 <label for="telefono">Teléfono<span class="required">*</span>:</label>
                 <input class="input"
@@ -67,7 +72,9 @@
                 {!!$errors->first('apellidos', '<small class="error">:message</small>')!!}
                 
                 <label for="region">Región/Provincia<span class="required">*</span>:</label>
-                <select name="region" id="region">
+                <select 
+                    name="region" 
+                    id="region">
                     <option disabled selected>--Selecciona tu región--</option>
                     <option value="Buenos Aires">Bs. As.</option>
                     <option value="Catamarca">Catamarca</option>
@@ -96,7 +103,9 @@
                 {!!$errors->first('region', '<small class="error">:message</small>')!!}
                 
                 <label for="localidad">Localidad/Ciudad<span class="required">*</span>:</label>
-                <select name="localidad" id="localidad">
+                <select 
+                    name="localidad" 
+                    id="localidad">
                     <option disabled selected>--Selecciona tu localidad--</option>
                     <option value="localidad-1">Localidad 1</option>
                     <option value="localidad-2">Localidad 2</option>
@@ -127,12 +136,21 @@
                             <td>Envio:</td>
                             <td>
                                 <div class="campo">
-                                    <input type="radio" id="retiro-suc" name="envio" value="retiro-suc">
-                                    <label for="retiro-suc">Retiro por sucursal</label>
+                                    <input 
+                                        type="radio" 
+                                        id="sucursal" 
+                                        name="retiro[modo]" 
+                                        value="sucursal">
+                                    <label for="sucursal">Retiro por sucursal</label>
                                 </div>
                                 <div class="campo">
-                                    <input type="radio" id="envio-dom" name="envio" value="envio-dom" checked>
-                                    <label for="envio-dom">Envio a domicilio($500)</label>
+                                    <input 
+                                        type="radio" 
+                                        id="envio" 
+                                        name="retiro[modo]" 
+                                        value="envio-domicilio"
+                                        checked>
+                                    <label for="envio">Envio a domicilio($500)</label>
                                 </div>
                             </td>
                         </tr>

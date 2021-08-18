@@ -13,7 +13,7 @@ function addEvents() {
         });
     });
 
-    let modoEnvio = document.querySelectorAll('input[name="envio"]');
+    let modoEnvio = document.querySelectorAll('input[name="retiro[modo]"]');
     modoEnvio.forEach(input =>{
         input.addEventListener('click', metodoEnvio);
     })
@@ -27,7 +27,7 @@ function popOver(element) {
 function metodoEnvio(e) {
     let envio = document.querySelector('#envio_dom');
     let retiro = document.querySelector('#retiro_suc');
-    if(e.target.value === 'envio-dom') {
+    if(e.target.value === 'envio-domicilio') {
         envio.classList.remove('hidden');    
         retiro.classList.add('hidden');    
     } else {

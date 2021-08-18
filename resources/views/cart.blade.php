@@ -33,7 +33,7 @@
                 </tbody>
             </table>
 
-            <form class="resumen" action="{{route('cart.checkout')}}" method="POST">
+            <form class="resumen" action="{{route('checkout.index')}}" method="POST">
                 @csrf
                 <fieldset>
                     <legend>Total a Pagar</legend>

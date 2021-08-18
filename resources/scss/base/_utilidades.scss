@@ -32,9 +32,27 @@
 
 .d-flex {
     display: flex;
-    justify-content: flex-start;
+    align-items: center;
 }
 
 .error {
     color: red;
+}
+
+.success {
+    padding: 1rem 2rem;
+    border-radius: 7px;
+    background-color: $color3;
+    color: $blanco;
+    font-size: 1.8rem;
+    a, span, p {
+        margin: 0;
+    }
+}
+
+.alert {
+    padding: 0 .5rem;
+    border-radius: 7px;
+    color: $blanco;
+    background-color: red;
 }

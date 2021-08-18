@@ -7,7 +7,7 @@
     @if(session()->has('success'))
         <p>{{ session()->get('success') }}</p>
     @endif
-    <a href="/carrito"> | Ver Carrito <span class="alert">{{count(Cart::getContent())}}</span></a>
+    <a href="/carrito">Ver Carrito <span class="alert">{{count(Cart::getContent())}}</span></a>
 </div>
 @endif
 

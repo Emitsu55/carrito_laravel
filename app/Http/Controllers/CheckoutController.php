@@ -40,26 +40,26 @@ class CheckoutController extends Controller
                 "description" => "Orden #" . $request->_token . '_' . 'date_' . date('Y-m-d') . '_time_' . date('H:i:s'),
                 "reference" => 'user_' . $request->_token . '_' . 'date_' . date('Y-m-d') . '_time_' . date('H:i:s'),
                 "currency" => "ARS",
-                "test" => "true",
-                "return_url" => "http://a106ae6b5276.ngrok.io/thank-you",
+                "test" => true,
+                "return_url" => "/thank-you",
                 "items" => $items,
-                "Customer" => [
+                "customer" => [
                     "email" => $request->email,
                     "name" => $request->nombre . ' ' . $request->apellidos,
                     "identification" => $request->dni,
                     "phone" => $request->telefono,
                     "adress" => $request->direccion,
                     "zipCode" => $request->cp,
-                    "country" => 'Argentina'
+                    "country" => 'argentina'
                 ],
             ],
         ];
         
         // Checkout mobbex
-        $this->mobbexCheckout($data);
-        // echo ('<pre>');
-        // return var_dump($data);
-        // echo ('</pre>');
+        $response = $this->mobbexCheckout($data);
+        echo ('<pre>');
+        return var_dump($response);
+        echo ('</pre>');
     }
 
     private function getItems()
@@ -89,7 +89,7 @@ class CheckoutController extends Controller
             CURLOPT_TIMEOUT => 30,
             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
             CURLOPT_CUSTOMREQUEST => $data['method'],
-            CURLOPT_POSTFIELDS => json_encode($data),
+            CURLOPT_POSTFIELDS => json_encode($data['body']),
             CURLOPT_HTTPHEADER => array(
                 'cache-control: no-cache',
                 'content-type: application/json',
@@ -98,36 +98,17 @@ class CheckoutController extends Controller
             ),
         ));
 
-        // $response = curl_exec($curl);
-        // $err = curl_error($curl);
-
-        // curl_close($curl);
-
-        // if ($err) {
-        //     return "cURL Error #:" . $err;
-        // } else {
-        //     $response = (json_decode($response));
-        //     return var_dump($response);
-        // }
-
         $response = curl_exec($curl);
-        $error    = curl_error($curl);
+        $err = curl_error($curl);
 
         curl_close($curl);
 
-        return var_dump($response);
-
-        // if ($error) {
-        //     error_log('Curl error in Mobbex request #:' . $error);
-        //     echo('hola');
-        // } else {
-        //     $result = json_decode($response, true);
-
-        //     if (isset($result['data']))
-        //         return $result['data'];
-        // }
-
-        // return false;
+        if ($err) {
+            return "cURL Error #:" . $err;
+        } else {
+            $response = (json_decode($response, true));
+            return $response['data'];
+        }
     }
 
     public function validateForm(Request $request)
@@ -159,48 +140,5 @@ class CheckoutController extends Controller
         //
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
 }

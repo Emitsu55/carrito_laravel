@@ -56,10 +56,9 @@ class CheckoutController extends Controller
         ];
         
         // Checkout mobbex
-        $response = $this->mobbexCheckout($data);
-        echo ('<pre>');
-        return var_dump($response);
-        echo ('</pre>');
+        $checkout = $this->mobbexCheckout($data);
+        $url = $checkout['url'];
+        header("Location: $url");
     }
 
     private function getItems()

@@ -8,7 +8,8 @@ table {
   table-layout: fixed;
   width: 100%;
   border-collapse: collapse;
-  border: 2px solid $color3;
+  border: 1px solid $color3;
+  border-bottom: 1.5px solid $color3;
 
   thead th:nth-child(1) {
     width: 10%;
@@ -33,6 +34,8 @@ table {
   }
   .total {
       color: green;
+      font-weight: $bold;
+      font-size: 2rem;
   }
 
   button {
@@ -45,4 +48,9 @@ table {
     text-align: center;
     font-size: 2rem;
   }
+}
+
+.resumen {
+  max-width: 30%;
+  margin: 0 auto;
 }

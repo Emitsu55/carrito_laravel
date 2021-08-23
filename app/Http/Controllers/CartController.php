@@ -19,7 +19,7 @@ class CartController extends Controller
             array("urlfoto"=> "../assets/img" . $producto->imagen . '.jpg')
            
         );
-        return back()->with('success',"¡$producto->Nombre se ha agregado con éxito al carrito!  | ");
+        return back()->with('success',"¡$producto->Nombre se ha agregado con éxito al carrito!");
    
     }
 
@@ -28,11 +28,11 @@ class CartController extends Controller
         \Cart::remove([
         'id' => $request->id,
         ]);
-        return back()->with('success',"¡$producto->nombre eliminado con éxito de su carrito.  | ");
+        return back()->with('success',"¡$producto->nombre eliminado con éxito de su carrito.");
     }
 
     public function clear(){
         \Cart::clear();
-        return back()->with('success',"¡Carrito Vacio!  | ");
+        return back()->with('success',"¡Carrito Vacio!");
     }
 }

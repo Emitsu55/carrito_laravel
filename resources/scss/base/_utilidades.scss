@@ -45,9 +45,14 @@
     background-color: $color3;
     color: $blanco;
     font-size: 1.8rem;
-    a, span, p {
+    span, p {
         margin: 0;
     }
+
+    a{
+        margin: 0 0 0 1rem; 
+    }
+    
 }
 
 .alert {
